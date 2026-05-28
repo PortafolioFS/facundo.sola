@@ -31,11 +31,15 @@ Si eso pasa, la prioridad recomendada es:
 
 ```bash
 RESEND_API_KEY=
-CONTACT_TO_EMAIL=
-CONTACT_FROM_EMAIL=
+CONTACT_TO_EMAIL=solafacu@gmail.com
+CONTACT_FROM_EMAIL=onboarding@resend.dev
 MONGODB_URI=
 MONGODB_DB=
 ```
+
+Para produccion, `CONTACT_FROM_EMAIL` debe usar un remitente permitido por
+Resend. `onboarding@resend.dev` sirve para pruebas; lo ideal es verificar un
+dominio propio en Resend y usar algo como `Portfolio <contacto@tu-dominio>`.
 
 ## Desarrollo local
 
