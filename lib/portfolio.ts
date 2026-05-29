@@ -31,7 +31,7 @@ export const portfolioProfile = {
   badge: "Perfil junior en formación",
   summary:
     "Estudiante de Técnico Superior en Desarrollo de Software, con formación en SQL, inteligencia artificial, ciberseguridad y experiencia en soporte técnico, sin inflar seniority ni alcance.",
-  email: "mailto:facundo@sola.dev",
+  email: "mailto:solafacu@gmail.com",
   linkedinUrl: "https://www.linkedin.com/in/facundosola/",
   githubHandle: "Facundo2504",
   githubUrl: "https://github.com/Facundo2504",

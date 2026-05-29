@@ -4,27 +4,42 @@ Portfolio personal construido con Next.js App Router, React 19 y Tailwind CSS 4.
 
 ## Estrategia de datos
 
-Este proyecto se mantiene **estático por decisión de arquitectura**.
+El contenido publico del portafolio se mantiene estatico por decision de arquitectura.
 
-- **Sin MongoDB / Atlas / Mongoose**.
-- **Sin `MONGODB_URI`**, seeds, colecciones ni modelos de base de datos.
+- MongoDB Atlas queda disponible para persistencia server-side cuando una ruta lo necesite, por ejemplo leads o formularios.
+- La conexion se centraliza en `lib/mongodb.ts` con `MONGODB_URI` y `attachDatabasePool`.
+- No se usa Mongoose ni modelos persistentes por defecto.
 - El contenido editable vive en archivos del repo:
   - Perfil, proyectos y certificados: `lib/portfolio.ts`
   - Proyectos destacados en Home: `components/projects-section.tsx`
   - Proyectos ampliados: `app/projects/page.tsx`
-  - Formación y certificados: `components/training-section.tsx`
+  - Formacion y certificados: `components/training-section.tsx`
 
-## Cuándo reevaluar esta decisión
+## Cuando ampliar esta decision
 
-Recién tiene sentido agregar persistencia si aparece una necesidad real de:
+Tiene sentido ampliar la persistencia si aparece una necesidad real de:
 
-1. editar contenido sin tocar código ni redeployar, o
-2. guardar leads, mensajes o formularios.
+1. editar contenido sin tocar codigo ni redeployar, o
+2. guardar mas datos operativos que leads, mensajes o formularios.
 
 Si eso pasa, la prioridad recomendada es:
 
-1. **MDX o CMS liviano** para contenido editorial,
-2. recién después evaluar una base de datos para persistencia real.
+1. MDX o CMS liviano para contenido editorial,
+2. despues ampliar el uso de MongoDB para persistencia real.
+
+## Variables de entorno
+
+```bash
+RESEND_API_KEY=
+CONTACT_TO_EMAIL=solafacu@gmail.com
+CONTACT_FROM_EMAIL=onboarding@resend.dev
+MONGODB_URI=
+MONGODB_DB=
+```
+
+Para produccion, `CONTACT_FROM_EMAIL` debe usar un remitente permitido por
+Resend. `onboarding@resend.dev` sirve para pruebas; lo ideal es verificar un
+dominio propio en Resend y usar algo como `Portfolio <contacto@tu-dominio>`.
 
 ## Desarrollo local
 
@@ -32,11 +47,11 @@ Si eso pasa, la prioridad recomendada es:
 npm run dev
 ```
 
-Abrí [http://localhost:3000](http://localhost:3000) para ver el sitio.
+Abrir `http://localhost:3000` para ver el sitio.
 
-## Validaciones rápidas
+## Validaciones rapidas
 
-- Home renderiza secciones con contenido estático desde componentes locales.
-- Blog está desactivado públicamente y `/blog` muestra un placeholder de "Próximamente".
+- Home renderiza secciones con contenido estatico desde componentes locales.
+- Blog esta desactivado publicamente y `/blog` muestra un placeholder de "Proximamente".
 - Projects usa datos curados del perfil `Facundo2504`.
-- Formación y certificados se renderizan desde una fuente tipada única.
+- Formacion y certificados se renderizan desde una fuente tipada unica.

@@ -1,5 +1,8 @@
 import { Resend } from "resend";
 
+const DEFAULT_CONTACT_TO_EMAIL = "solafacu@gmail.com";
+const DEFAULT_CONTACT_FROM_EMAIL = "onboarding@resend.dev";
+
 let resendClient: Resend | null = null;
 
 export function getResend() {
@@ -17,20 +20,16 @@ export function getResend() {
 }
 
 export function getContactEmailConfig() {
-  const toEmail = process.env.CONTACT_TO_EMAIL;
-  const fromEmail = process.env.CONTACT_FROM_EMAIL;
+  const toEmail = process.env.CONTACT_TO_EMAIL ?? DEFAULT_CONTACT_TO_EMAIL;
+  const fromEmail = process.env.CONTACT_FROM_EMAIL ?? DEFAULT_CONTACT_FROM_EMAIL;
 
-  if (!toEmail) {
-    throw new Error("Missing CONTACT_TO_EMAIL environment variable.");
-  }
-
-  if (!fromEmail) {
-    throw new Error("Missing CONTACT_FROM_EMAIL environment variable.");
-  }
+  const fromHeader = fromEmail.includes("<")
+    ? fromEmail
+    : `Facundo Sola <${fromEmail}>`;
 
   return {
     toEmail,
     fromEmail,
-    fromHeader: `Facundo Sola <${fromEmail}>`,
+    fromHeader,
   };
 }

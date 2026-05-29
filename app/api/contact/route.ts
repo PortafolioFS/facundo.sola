@@ -1,6 +1,8 @@
 import { NextResponse } from "next/server";
 import { getContactEmailConfig, getResend } from "@/lib/resend";
 
+export const runtime = "nodejs";
+
 type ContactField = "name" | "email" | "subject" | "message";
 type FieldErrors = Partial<Record<ContactField, string>>;
 
@@ -167,7 +169,11 @@ export async function POST(request: Request) {
     });
 
     if (error) {
-      console.error("Resend contact email failed", error);
+      console.error("Resend contact email failed", {
+        name: error.name,
+        message: error.message,
+        statusCode: error.statusCode,
+      });
 
       return NextResponse.json(
         {
