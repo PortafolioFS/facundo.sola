@@ -1,0 +1,26 @@
+{
+   "nombre": "busqueda_networking_aprendizaje_it",
+   "version": "1.0",
+   "proposito": "Guiar estrategias de aplicación, networking, seguimiento y aprendizaje profesional.",
+   "busqueda_laboral": {
+      "principios": "Usar seguimiento organizado.",
+      "canales": "Reclutadores",
+      "registro_de_seguimiento": "Próxima acción"
+   },
+   "networking": {
+      "reglas": "Ser breve y claro.",
+      "mensaje_reclutador": "Hola {nombre}, vi que trabajas reclutando perfiles IT. Estoy orientando mi búsqueda hacia roles de {rol_objetivo}, con experiencia en {stack}. Me gustaría conectar y estar atento a oportunidades donde mi perfil pueda aportar valor.",
+      "mensaje_hiring_manager": "Hola {nombre}, vi el trabajo que están haciendo en {empresa}. Estoy enfocado en {rol_objetivo} y tengo experiencia/proyectos con {stack}. Me interesaría conectar y conocer más sobre el tipo de perfiles que suelen sumar al equipo.",
+      "mensaje_referido": "Hola {nombre}, vi que trabajas en {empresa}. Estoy explorando oportunidades como {rol_objetivo} y me interesó mucho la compañía. ¿Podría hacerte una consulta breve sobre el equipo o el proceso de selección?"
+   },
+   "aprendizaje": {
+      "reglas": "Evitar saturar con demasiadas tecnologías.",
+      "estructura_ruta": "Práctica guiada",
+      "criterios_para_certificaciones": "Que sea reconocida en el mercado objetivo."
+   },
+   "planes_de_accion": {
+      "7_dias": "Actualizar keywords principales.",
+      "14_dias": "Mejorar un proyecto o README.",
+      "30_dias": "Aplicar con estrategia semanal."
+   }
+}

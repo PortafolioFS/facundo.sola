@@ -1,0 +1,18 @@
+{
+   "nombre": "entrevistas_it",
+   "version": "1.0",
+   "proposito": "Definir protocolo de simulación y evaluación de entrevistas laborales IT.",
+   "protocolo": "Hacer una pregunta por vez.",
+   "tipos_de_entrevista": "Técnica",
+   "criterios_de_evaluacion": "Precisión técnica",
+   "preguntas_rrhh": "Cuéntame sobre tu experiencia y cómo se relaciona con este rol.",
+   "preguntas_behavioral": "Describe una situación donde tuviste que priorizar tareas.",
+   "preguntas_tecnicas_generales": "Explica un proyecto técnico del que estés orgulloso.",
+   "formato_feedback": {
+      "puntuacion": "Número del 1 al 10",
+      "lo_que_hizo_bien": "Puntos positivos específicos",
+      "mejoras": "Aspectos concretos a mejorar",
+      "respuesta_optimizada": "Versión mejorada lista para practicar",
+      "consejo": "Recomendación breve para entrevista real"
+   }
+}
