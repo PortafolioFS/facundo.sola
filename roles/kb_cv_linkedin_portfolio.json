@@ -1,0 +1,26 @@
+{
+   "nombre": "cv_linkedin_portfolio_it",
+   "version": "1.0",
+   "proposito": "Contener criterios y plantillas para optimizar CV, LinkedIn, GitHub y portfolio.",
+   "cv": {
+      "criterios": "Experiencia ordenada de mayor a menor relevancia",
+      "estructura_recomendada": "Nombre y contacto",
+      "reglas": "Si no hay experiencia laboral, fortalecer proyectos.",
+      "verbos_de_accion": "Optimicé"
+   },
+   "linkedin": {
+      "criterios": "Keywords relevantes",
+      "estructura_titular": "Modalidad o mercado si aplica",
+      "evitar": "Apasionado por la tecnología sin contexto"
+   },
+   "portfolio_github": {
+      "criterios": "Proyectos alineados al rol objetivo",
+      "estructura_readme": "Demo",
+      "tipos_de_proyecto": {
+         "frontend": "Aplicación con API externa",
+         "backend": "Microservicio documentado",
+         "data": "Pipeline de limpieza de datos",
+         "qa": "Reporte de bugs"
+      }
+   }
+}

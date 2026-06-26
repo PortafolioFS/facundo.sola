@@ -1,0 +1,26 @@
+{
+   "nombre": "cv_linkedin_portfolio_it",
+   "version": "1.0",
+   "proposito": "Contener criterios y plantillas para optimizar CV, LinkedIn, GitHub y portfolio.",
+   "cv": {
+      "criterios": "Enfoque en rol objetivo",
+      "estructura_recomendada": "Perfil profesional",
+      "reglas": "No inventar métricas.",
+      "verbos_de_accion": "Colaboré"
+   },
+   "linkedin": {
+      "criterios": "Experiencia orientada a resultados",
+      "estructura_titular": "Especialización o valor diferencial",
+      "evitar": "Listas excesivas de tecnologías"
+   },
+   "portfolio_github": {
+      "criterios": "Código ordenado",
+      "estructura_readme": "Tecnologías usadas",
+      "tipos_de_proyecto": {
+         "frontend": "Dashboard responsive",
+         "backend": "Sistema CRUD con base de datos",
+         "data": "Pipeline de limpieza de datos",
+         "qa": "Reporte de bugs"
+      }
+   }
+}
