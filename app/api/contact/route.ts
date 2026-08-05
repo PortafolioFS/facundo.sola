@@ -15,6 +15,7 @@ type ContactPayload = {
 };
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+const MAX_REQUEST_BYTES = 12_000;
 
 function readTrimmedString(value: unknown) {
   return typeof value === "string" ? value.trim() : "";
@@ -106,6 +107,27 @@ function buildEmailHtml(input: {
 
 export async function POST(request: Request) {
   let payload: ContactPayload;
+
+  const contentType = request.headers.get("content-type") ?? "";
+
+  if (!contentType.toLowerCase().startsWith("application/json")) {
+    return NextResponse.json(
+      { ok: false, error: "El contenido debe enviarse como JSON." },
+      { status: 415 }
+    );
+  }
+
+  const declaredLength = Number(request.headers.get("content-length") ?? "0");
+
+  if (
+    Number.isFinite(declaredLength) &&
+    declaredLength > MAX_REQUEST_BYTES
+  ) {
+    return NextResponse.json(
+      { ok: false, error: "La solicitud supera el tamaño permitido." },
+      { status: 413 }
+    );
+  }
 
   try {
     payload = (await request.json()) as ContactPayload;
