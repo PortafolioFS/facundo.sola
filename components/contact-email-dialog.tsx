@@ -182,14 +182,14 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
         ref={triggerRef}
         type="button"
         onClick={openDialog}
-        className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100"
+        className="inline-flex min-h-11 items-center rounded-full bg-cyan-300 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-cyan-200"
       >
         Enviar email
       </button>
 
       {open ? (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center bg-slate-950/85 p-4 backdrop-blur-sm"
           onClick={closeDialog}
         >
           <div
@@ -198,12 +198,12 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
             aria-modal="true"
             aria-labelledby={dialogTitleId}
             aria-describedby={dialogDescriptionId}
-            className="w-full max-w-2xl rounded-[28px] border border-white/12 bg-[#05060a] shadow-2xl"
+            className="max-h-[calc(100svh-2rem)] w-full max-w-2xl overflow-y-auto rounded-[28px] border border-white/12 bg-slate-950 shadow-2xl"
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between gap-4 border-b border-white/10 px-6 py-5 sm:px-8">
               <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-[#22d3ee]">
+                <p className="text-xs font-semibold uppercase tracking-[0.2em] text-cyan-300">
                   Contacto
                 </p>
                 <h3
@@ -223,6 +223,7 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
               <button
                 type="button"
                 onClick={closeDialog}
+                aria-label="Cerrar formulario de contacto"
                 className="rounded-full border border-white/10 px-3 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-white/80 transition hover:border-white/30 hover:text-white"
               >
                 Cerrar
@@ -241,7 +242,7 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
                       Mensaje enviado
                     </h4>
                     <p className="mt-2 text-sm text-emerald-100/90">
-                      Perfecto. Tu mensaje ya salió hacia la inbox de contacto.
+                      Perfecto. Tu mensaje ya llegó a la bandeja de contacto.
                       Si hace falta, también podés escribirme directo por email.
                     </p>
                   </div>
@@ -274,7 +275,7 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
                     Fallback directo:{" "}
                     <Link
                       href={fallbackHref}
-                      className="font-medium text-[#22d3ee] underline underline-offset-4"
+                      className="font-medium text-cyan-300 underline underline-offset-4"
                     >
                       escribirme por mail
                     </Link>
@@ -285,7 +286,6 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
                 <form
                   className="space-y-5"
                   onSubmit={handleSubmit}
-                  noValidate
                   aria-busy={status === "submitting"}
                 >
                   <div className="grid gap-5 sm:grid-cols-2">
@@ -302,13 +302,16 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
                         name="name"
                         type="text"
                         autoComplete="name"
+                        required
+                        minLength={2}
+                        maxLength={80}
                         value={form.name}
                         onChange={(event) => handleChange("name", event.target.value)}
                         aria-invalid={fieldErrors.name ? "true" : "false"}
                         aria-describedby={
                           fieldErrors.name ? "contact-name-error" : undefined
                         }
-                        className="w-full rounded-2xl border border-white/12 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-[#22d3ee]"
+                        className="w-full rounded-2xl border border-white/12 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300"
                         placeholder="Tu nombre"
                       />
                       {fieldErrors.name ? (
@@ -333,13 +336,15 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
                         name="email"
                         type="email"
                         autoComplete="email"
+                        required
+                        maxLength={320}
                         value={form.email}
                         onChange={(event) => handleChange("email", event.target.value)}
                         aria-invalid={fieldErrors.email ? "true" : "false"}
                         aria-describedby={
                           fieldErrors.email ? "contact-email-error" : undefined
                         }
-                        className="w-full rounded-2xl border border-white/12 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-[#22d3ee]"
+                        className="w-full rounded-2xl border border-white/12 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300"
                         placeholder="tu@email.com"
                       />
                       {fieldErrors.email ? (
@@ -364,13 +369,16 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
                       id="contact-subject"
                       name="subject"
                       type="text"
+                      required
+                      minLength={3}
+                      maxLength={120}
                       value={form.subject}
                       onChange={(event) => handleChange("subject", event.target.value)}
                       aria-invalid={fieldErrors.subject ? "true" : "false"}
                       aria-describedby={
                         fieldErrors.subject ? "contact-subject-error" : undefined
                       }
-                      className="w-full rounded-2xl border border-white/12 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-[#22d3ee]"
+                      className="w-full rounded-2xl border border-white/12 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300"
                       placeholder="Contame el motivo del mensaje"
                     />
                     {fieldErrors.subject ? (
@@ -394,13 +402,16 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
                       id="contact-message"
                       name="message"
                       rows={6}
+                      required
+                      minLength={10}
+                      maxLength={5000}
                       value={form.message}
                       onChange={(event) => handleChange("message", event.target.value)}
                       aria-invalid={fieldErrors.message ? "true" : "false"}
                       aria-describedby={
                         fieldErrors.message ? "contact-message-error" : undefined
                       }
-                      className="w-full rounded-3xl border border-white/12 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-neutral-500 focus:border-[#22d3ee]"
+                      className="w-full rounded-3xl border border-white/12 bg-white/5 px-4 py-3 text-sm text-white outline-none transition placeholder:text-slate-500 focus:border-cyan-300"
                       placeholder="Escribí tu mensaje acá"
                     />
                     {fieldErrors.message ? (
@@ -440,7 +451,7 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
                       ¿Preferís evitar el formulario?{" "}
                       <Link
                         href={fallbackHref}
-                        className="font-medium text-[#22d3ee] underline underline-offset-4"
+                        className="font-medium text-cyan-300 underline underline-offset-4"
                       >
                         Abrí el email directo
                       </Link>
@@ -449,7 +460,7 @@ export function ContactEmailDialog({ fallbackHref }: { fallbackHref: string }) {
                     <button
                       type="submit"
                       disabled={status === "submitting"}
-                      className="rounded-full bg-white px-5 py-3 text-sm font-semibold text-black transition hover:bg-neutral-100 disabled:cursor-not-allowed disabled:bg-neutral-300"
+                      className="rounded-full bg-cyan-300 px-5 py-3 text-sm font-bold text-slate-950 transition hover:bg-cyan-200 disabled:cursor-not-allowed disabled:bg-slate-300"
                     >
                       {status === "submitting" ? "Enviando..." : "Enviar mensaje"}
                     </button>

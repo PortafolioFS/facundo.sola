@@ -1,35 +1,43 @@
+import Link from "next/link";
 import { portfolioProfile } from "@/lib/portfolio";
 
 export function Footer() {
   return (
-    <footer className="border-t border-white/5 bg-black/40 py-10 text-sm text-neutral-400">
-      <div className="mx-auto flex max-w-5xl flex-col gap-3 px-6 sm:flex-row sm:items-center sm:justify-between">
-        <p className="font-semibold text-white">{portfolioProfile.name}</p>
-        <p>
-          Perfil junior en formación con foco en desarrollo de software, IA,
-          SQL, ciberseguridad y soporte técnico.
-        </p>
-        <div className="flex gap-4 text-white">
-          <a
-            className="hover:text-[#22d3ee]"
+    <footer className="border-t border-white/8 bg-slate-950/70 py-10 text-sm text-slate-400">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6 px-5 sm:px-8 md:flex-row md:items-center md:justify-between lg:px-10">
+        <div>
+          <p className="font-bold text-white">{portfolioProfile.name}</p>
+          <p className="mt-1">{portfolioProfile.role}</p>
+        </div>
+        <nav aria-label="Enlaces del pie" className="flex flex-wrap gap-x-5 gap-y-3">
+          <Link className="transition hover:text-cyan-300" href="/projects">
+            Proyectos
+          </Link>
+          <Link
+            className="transition hover:text-cyan-300"
             href={portfolioProfile.githubUrl}
             target="_blank"
             rel="noreferrer"
           >
             GitHub
-          </a>
-          <a
-            className="hover:text-[#22d3ee]"
+            <span className="sr-only"> (abre en una pestaña nueva)</span>
+          </Link>
+          <Link
+            className="transition hover:text-cyan-300"
             href={portfolioProfile.linkedinUrl}
             target="_blank"
             rel="noreferrer"
           >
             LinkedIn
-          </a>
-          <a className="hover:text-[#22d3ee]" href={portfolioProfile.email}>
+            <span className="sr-only"> (abre en una pestaña nueva)</span>
+          </Link>
+          <Link
+            className="transition hover:text-cyan-300"
+            href={portfolioProfile.email}
+          >
             Email
-          </a>
-        </div>
+          </Link>
+        </nav>
       </div>
     </footer>
   );

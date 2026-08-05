@@ -4,6 +4,7 @@ export type PortfolioProject = {
   description: string;
   tags: string[];
   href: string;
+  repositoryHref?: string;
   highlight: string;
   featured?: boolean;
   ctaLabel?: string;
@@ -11,60 +12,145 @@ export type PortfolioProject = {
 
 export type Certificate = {
   title: string;
-  institution?: string;
-  date?: string;
-  duration?: string;
-  score?: string;
-  notes?: string;
+  institution: string;
+  period: string;
+  status: "Completado" | "En curso";
+  verificationUrl?: string;
 };
 
 export type LearningTrack = {
   title: string;
-  institution?: string;
+  institution: string;
   period: string;
   description: string;
 };
 
+export type SkillGroup = {
+  id: "support" | "systems" | "development" | "security";
+  title: string;
+  description: string;
+  skills: string[];
+};
+
+function getSiteUrl() {
+  const configuredUrl = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+
+  if (configuredUrl) {
+    return configuredUrl.replace(/\/$/, "");
+  }
+
+  const vercelHost =
+    process.env.VERCEL_PROJECT_PRODUCTION_URL ?? process.env.VERCEL_URL;
+
+  return vercelHost ? `https://${vercelHost}` : "http://localhost:3000";
+}
+
 export const portfolioProfile = {
   name: "Facundo Sola",
-  role: "Desarrollo de Software, IA, SQL y Ciberseguridad",
-  badge: "Perfil junior en formación",
+  role: "Soporte técnico IT & Desarrollo de Software",
+  badge: "Soporte IT freelance desde 2019",
   summary:
-    "Estudiante de Técnico Superior en Desarrollo de Software, con formación en SQL, inteligencia artificial, ciberseguridad y experiencia en soporte técnico, sin inflar seniority ni alcance.",
+    "Ayudo a personas y pequeños negocios a resolver problemas de hardware, software y conectividad. A esa experiencia práctica le sumo una formación activa en desarrollo de software, bases de datos y ciberseguridad.",
+  emailAddress: "solafacu@gmail.com",
   email: "mailto:solafacu@gmail.com",
   linkedinUrl: "https://www.linkedin.com/in/facusola/",
   githubHandle: "Facundo2504",
   githubUrl: "https://github.com/Facundo2504",
-  siteUrl: "https://facundosola.vercel.app",
+  siteUrl: getSiteUrl(),
   cvUrl:
     "https://drive.google.com/file/d/1kRnBZO5FdoWgvsf0UfcUM1F2CG9nfyOz/view?usp=drive_link",
+  location: "Tacural, Santa Fe",
 };
 
-export const aboutHighlights = [
+export const professionalExperience = {
+  role: "Soporte Técnico IT",
+  company: "Freelance",
+  period: "2019 - Actualidad",
+  summary:
+    "Soporte directo a usuarios particulares y pequeños negocios, desde el diagnóstico inicial hasta la puesta a punto del equipo o la red.",
+  responsibilities: [
+    "Diagnóstico, reparación y optimización de hardware y software en equipos de escritorio y notebooks.",
+    "Mantenimiento preventivo, limpieza lógica y física, y optimización de sistemas Windows.",
+    "Instalación y configuración de periféricos, drivers, software de productividad y herramientas de seguridad.",
+    "Configuración básica de redes domiciliarias y pymes, con resolución inicial de problemas de conectividad.",
+    "Relevamiento de necesidades, elaboración de presupuestos y comunicación clara con perfiles no técnicos.",
+  ],
+};
+
+export const skillGroups: SkillGroup[] = [
   {
-    title: "Desarrollo de software",
+    id: "support",
+    title: "Soporte IT & Hardware",
     description:
-      "Curso la tecnicatura en Desarrollo de Software y vengo consolidando base en programación, bases de datos, sistemas operativos y trabajo con aplicaciones reales.",
+      "Experiencia práctica resolviendo incidentes y dejando equipos listos para el trabajo diario.",
+    skills: [
+      "Diagnóstico de equipos",
+      "Mantenimiento preventivo y correctivo",
+      "Optimización de Windows",
+      "Software, drivers y periféricos",
+      "Atención a usuarios / Help Desk",
+    ],
   },
   {
-    title: "IA, SQL y ciberseguridad",
+    id: "systems",
+    title: "Redes & Sistemas",
     description:
-      "Complemento la formación formal con certificados en IA, SQL, Kali Linux, hacking ético y Metasploit, siempre desde una base honesta y de aprendizaje continuo.",
+      "Fundamentos para identificar problemas, documentarlos y escalar cuando hace falta.",
+    skills: [
+      "Redes TCP/IP",
+      "Routers y switches",
+      "Troubleshooting de conectividad",
+      "Windows",
+      "Nociones de Linux",
+    ],
   },
   {
-    title: "Soporte técnico y sistemas",
+    id: "development",
+    title: "Desarrollo & Datos",
     description:
-      "También tengo experiencia en soporte, mantenimiento de equipos, redes y asistencia técnica, algo que me dio práctica concreta con usuarios y operación diaria.",
+      "Base académica aplicada en proyectos propios y prácticas publicadas en GitHub.",
+    skills: [
+      "C# y Windows Forms",
+      "Entity Framework",
+      "HTML5, CSS3 y JavaScript",
+      "SQL y SQL Server",
+      "Git y GitHub",
+    ],
+  },
+  {
+    id: "security",
+    title: "Seguridad & Herramientas",
+    description:
+      "Formación introductoria orientada a trabajar con criterio, prevención y gestión de riesgos.",
+    skills: [
+      "Seguridad informática",
+      "Gestión de riesgos",
+      "Microsoft Office",
+      "Excel avanzado en curso",
+      "Inglés técnico intermedio",
+    ],
   },
 ];
 
 export const portfolioProjects: PortfolioProject[] = [
   {
+    id: "memory-master",
+    title: "Memory Master",
+    description:
+      "Juego de memoria para niños y adultos, con cinco niveles infantiles y un modo extremo configurable de 100 a 500 tarjetas.",
+    tags: ["JavaScript", "HTML", "CSS"],
+    href: "https://topmemorymaster.netlify.app/",
+    repositoryHref: "https://github.com/Facundo2504/Juegos-Interactivos",
+    highlight: "Juego interactivo",
+    featured: true,
+    ctaLabel: "Jugar ahora",
+  },
+  {
     id: "miturnosalud",
     title: "MiTurnoSalud",
     description:
-      "Sistema turnero médico con flujo web de solicitud de turnos, dashboard y pantallas de notificaciones construido con JavaScript y HTML.",
-    tags: ["JavaScript", "HTML", "Turnos"],
+      "Prototipo de sistema de turnos médicos con registro, solicitud de turnos, dashboard y pantallas de notificaciones.",
+    tags: ["JavaScript", "HTML", "CSS"],
     href: "https://github.com/Facundo2504/MiTurnoSalud",
     highlight: "Proyecto web",
     featured: true,
@@ -74,7 +160,7 @@ export const portfolioProjects: PortfolioProject[] = [
     id: "totaltech",
     title: "Totaltech",
     description:
-      "Sistema para tienda electrónica desarrollado en C#, organizado en capas de front, lógica, datos y back dentro de una solución .NET.",
+      "Sistema para una tienda de electrónica desarrollado en C# y organizado por capas de presentación, lógica y datos.",
     tags: ["C#", ".NET", "Arquitectura por capas"],
     href: "https://github.com/Facundo2504/Totaltech",
     highlight: "Sistema de gestión",
@@ -85,18 +171,18 @@ export const portfolioProjects: PortfolioProject[] = [
     id: "hc06solution",
     title: "HC06Solution",
     description:
-      "Aplicación Android en Kotlin enfocada en conectividad con módulo Bluetooth HC-06, preparada como proyecto listo para compilar.",
+      "Aplicación Android en Kotlin orientada a la conexión con un módulo Bluetooth HC-06.",
     tags: ["Kotlin", "Android", "Bluetooth"],
     href: "https://github.com/Facundo2504/HC06Solution",
-    highlight: "Android",
+    highlight: "Proyecto Android",
     ctaLabel: "Ver repositorio",
   },
   {
     id: "programaccion1-2023",
-    title: "Programacción I 2023",
+    title: "Programación I 2023",
     description:
-      "Repositorio de práctica en C# con solución, proyecto y ejercicios de repaso para consolidar fundamentos de programación.",
-    tags: ["C#", "Fundamentos", "Práctica"],
+      "Ejercicios académicos en C# para consolidar fundamentos de programación y resolución de problemas.",
+    tags: ["C#", "Fundamentos", "Práctica académica"],
     href: "https://github.com/Facundo2504/Programaccion1_2023-Facu-Sola",
     highlight: "Práctica académica",
     ctaLabel: "Ver repositorio",
@@ -109,81 +195,56 @@ export const featuredProjects = portfolioProjects.filter(
 
 export const learningTracks: LearningTrack[] = [
   {
-    title: "Técnico Superior en Desarrollo de Software",
+    title: "Tecnicatura Superior en Desarrollo de Software",
+    institution: "ICES",
     period: "2022 - Actualidad",
     description:
-      "Formación terciaria orientada a programación, bases de datos, sistemas operativos, redes, ingeniería de software y práctica profesional.",
+      "Formación en programación, sistemas operativos, arquitectura de computadoras, redes y gestión de bases de datos.",
   },
 ];
 
-export const technicalCertificates: Certificate[] = [
+export const certificates: Certificate[] = [
   {
-    title: "Curso de Iniciación al Desarrollo con IA",
-    institution: "BIG school",
-    date: "30/03/2026",
-    duration: "6 hs",
+    title: "Fundamentos de Ciberseguridad",
+    institution: "Google · Coursera",
+    period: "Completado",
+    status: "Completado",
+    verificationUrl: "https://coursera.org/verify/W3BGB9U3RON1",
+  },
+  {
+    title: "Juegue sobre seguro: Gestionar los Riesgos de Seguridad",
+    institution: "Google · Coursera",
+    period: "Completado",
+    status: "Completado",
+    verificationUrl: "https://coursera.org/verify/V8TWPZAGFH57",
   },
   {
     title: "Laboratorio de Ingeniería en Inteligencia Artificial",
     institution: "ICES",
-    date: "25/11/2025",
-    duration: "4 meses",
+    period: "2025",
+    status: "Completado",
   },
   {
-    title: "Introduction to SQL",
-    date: "24/07/2025",
+    title: "Introducción a SQL",
+    institution: "Capacitación técnica",
+    period: "2025",
+    status: "Completado",
   },
-  {
-    title: "Introduction to Bionic Prostheses",
-    institution: "P4H Bionics Online Academy",
-    date: "27/09/2025",
-    duration: "120 min",
-  },
-  {
-    title: "Introducción al Sistema Operativo Kali",
-    date: "15/11/2023",
-    duration: "3:50 hs",
-    score: "95/100",
-  },
-  {
-    title: "Hacking Ético",
-    date: "01/12/2023",
-    duration: "7 hs",
-    score: "94.12/100",
-    notes: "Nivel introductorio de seguridad informática.",
-  },
-  {
-    title: "Metasploit Avanzado",
-    date: "11/01/2024",
-    duration: "3 hs",
-    score: "80/100",
-  },
-];
-
-export const complementaryCertificates: Certificate[] = [
-  {
-    title: "Asistente de Estudio Jurídico",
-    institution: "ICR Cursos Profesionalizantes",
-    date: "28/03/2022",
-    duration: "40 hs",
-    notes: "Modalidad presencial.",
-  },
-  {
-    title: "Líder Coach Sistémico",
-    institution: "Escuela Coaching Ontológico Americano",
-    date: "01/12/2020",
-    duration: "27 hs",
-    
-  },
-];
-
-export const inProgressCertificates: Certificate[] = [
   {
     title: "Google Cybersecurity Professional Certificate",
-    notes: "En progreso.",
+    institution: "Google · Coursera",
+    period: "En curso",
+    status: "En curso",
   },
   {
     title: "Excel Avanzado",
-    notes: "En progreso.",
+    institution: "Udemy",
+    period: "2026 · En curso",
+    status: "En curso",
   },
 ];
+
+export const additionalProfile = {
+  mobility: "Licencia de conducir B1 y disponibilidad para viajar.",
+  workArea: "Disponibilidad laboral en Rafaela y Sunchales.",
+};
